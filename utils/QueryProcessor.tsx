@@ -16,7 +16,22 @@ export default function QueryProcessor(query: string): string {
       const y: number = parseInt(addMatch[2]);
       return (x+y).toString();
     }
-
+    
+  } else if (query.toLowerCase().includes("largest:")) {
+    const addMatch = query.match(/Which of the following numbers is the largest: (\d+), (\d+), (\d+)?/);
+    if (addMatch) {
+      const x: number = parseInt(addMatch[1]);
+      const y: number = parseInt(addMatch[2]);
+      const z: number = parseInt(addMatch[3]);
+      return (Math.max(x, Math.max(y, z))).toString();
+    }
+  } else if (query.toLowerCase().includes("multiplied")) {
+    const addMatch = query.match(/What is (\d+) multiplied by (\d+)?/);
+    if (addMatch) {
+      const x: number = parseInt(addMatch[1]);
+      const y: number = parseInt(addMatch[2]);
+      return (x*y).toString();
+    }
   }
 
   return "";
